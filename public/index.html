@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech and Braille Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Custom Theme files -->
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+    <!-- //online-fonts -->
+
+     <!-- Internal CSS for styling -->
+     <style>
+        /* General form styling */
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 50%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Heading styling */
+        h3 {
+            text-align: center;
+            font-family: 'Raleway', sans-serif;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input and checkbox styling */
+        input[type="file"],
+        input[type="checkbox"] {
+            margin-bottom: 15px;
+            padding: 5px;
+        }
+
+        /* Label styling */
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Submit and cancel button styling */
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button[type="button"] {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Form centering and responsiveness */
+        form {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hover effects for buttons */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        button[type="button"]:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <section class="main-banner" id="home">
+    <h1>Text-to-Speech and Braille Converter</h1>
+    
+    <!-- Form for Speech Conversion -->
+    <h2>Upload for Speech Conversion</h2>
+    <form id="uploadSpeechForm" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt,.pdf,image/*" required>
+        <select name="language" required>
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+            <option value="bn">Bengali</option>
+            <!-- Add more options as needed -->
+        </select>
+        <label>
+            <input type="checkbox" name="convertToBraille"> Convert to Braille
+        </label>
+        <button type="submit">Upload for Speech</button>
+        <button type="button" id="cancelSpeechButton">Cancel</button>
+    </form>
+
+    <!-- Form for Braille Conversion -->
+    <h2>Upload for Braille Conversion</h2>
+    <form id="uploadBrailleForm" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt,.pdf,.xls,.xlsx" required>
+        <label>
+            <input type="checkbox" name="convertToSpeech"> Convert to Speech
+        </label>
+        <button type="submit">Upload for Braille</button>
+        <button type="button" id="cancelBrailleButton">Cancel</button>
+    </form>
+
+    <div id="loadingSpinner" style="display: none;">
+        <p>Loading...</p>
+    </div>
+    
+    <div id="extractedText"></div>
+    
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+    <a id="downloadLink" download style="display: none;">Download Audio</a>
+    <a id="brailleDownloadLink" download style="display: none;">Download Braille</a>
+
+    <script src="scripts.js"></script>
+</section>
+</body>
+</html>
